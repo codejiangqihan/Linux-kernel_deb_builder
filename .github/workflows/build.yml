@@ -13,7 +13,12 @@ jobs:
     steps:
       - name: tmpfs
         run: |
-          sudo mount -t tmpfs -o size=4G,mode=1777 tmpfs .
+          DIR="$(pwd)"
+          [ -d "$DIR" ] || { echo "Error: pwd not exist"; exit 1; }
+          cd / || cd /tmp
+          sudo mount -t tmpfs tmpfs "$DIR" -o size=6G,mode=1777,noatime || { echo "mount failed"; exit 2; }
+          cd "$DIR" || { echo "cd back failed"; exit 3; }
+          df -h .   # 验证 tmpfs 是否生效
 
       - name: Checkout
         uses: actions/checkout@main
