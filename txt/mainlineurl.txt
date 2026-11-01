@@ -1,1 +1,1 @@
-https://git.kernel.org/torvalds/t/linux-7.3-rc5.tar.gz
+https://cdn.kernel.org/pub/linux/kernel/v7.x/linux-7.3.tar.xz
